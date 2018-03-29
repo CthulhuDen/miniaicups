@@ -7,6 +7,7 @@
 
 #include "ui_strategymodal.h"
 #include <QDialog>
+#include <QProcessEnvironment>
 
 namespace Ui {
     class StrategyModal;
@@ -20,11 +21,13 @@ protected:
     Ui::StrategyModal *ui;
 
 public:
-    explicit StrategyModal(QWidget *parent=NULL) :
+    explicit StrategyModal(const QProcessEnvironment &env, QWidget *parent=NULL) :
         QDialog(parent),
         ui(new Ui::StrategyModal)
     {
         ui->setupUi(this);
+
+	ui->edt_prog_1->setText(env.value("CUSTOM_STRATEGY", "/usr/local/bin").toUtf8());
     }
 
     virtual ~StrategyModal() {

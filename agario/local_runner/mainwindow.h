@@ -6,6 +6,7 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QMessageBox>
+#include <QProcessEnvironment>
 
 #include "strategymodal.h"
 #include "mechanic.h"
@@ -29,11 +30,11 @@ private:
     bool is_paused;
 
 public:
-    explicit MainWindow(QWidget *parent = 0) :
+    explicit MainWindow(const QProcessEnvironment &env, QWidget *parent = 0) :
         QMainWindow(parent),
         ui(new Ui::MainWindow),
         mechanic(new Mechanic),
-        sm(new StrategyModal),
+        sm(new StrategyModal(env)),
         mbox(new QMessageBox),
         timerId(-1),
         is_paused(false)

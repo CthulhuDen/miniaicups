@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
     Constants::initialize(env);
 
     QApplication a(argc, argv);
-    MainWindow window;
+    MainWindow window(env);
     window.show();
     return a.exec();
 }
